@@ -1,5 +1,10 @@
 package com.tictactoe.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
 public class GameState {
   private boolean finished;
   private String gameBoard[][];
@@ -11,7 +16,7 @@ public class GameState {
 
   public boolean move(Player player, int moveLocationX, int moveLocationY) {
     if (gameBoard[moveLocationX][moveLocationY] != null) {
-      return false;
+      throw new RuntimeException("Slot already filled. Invalid move");
     }
 
     gameBoard[moveLocationX][moveLocationY] = player.getSymbol();
@@ -64,5 +69,19 @@ public class GameState {
 
   public Player getWinner() {
     return winner;
+  }
+
+  public List<List<Integer>> allUnfilledLocations() {
+    final List<List<Integer>> unfilledLocations = new ArrayList<>();
+
+    for (int i = 0; i < 3; ++i) {
+      for (int j = 0; j < 3; ++j) {
+        if (gameBoard[i][j] == null) {
+          unfilledLocations.add(asList(i, j));
+        }
+      }
+    }
+
+    return unfilledLocations;
   }
 }
