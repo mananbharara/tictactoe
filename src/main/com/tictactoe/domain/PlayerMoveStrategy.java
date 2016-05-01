@@ -16,6 +16,10 @@ public class PlayerMoveStrategy {
       return move;
     }
 
+    return humanMoveLocation(currentPlayer, inputOutput);
+  }
+
+  private static List<Integer> humanMoveLocation(Player currentPlayer, Console inputOutput) {
     String playerMoveString = inputOutput.query(currentPlayer.getName() + "'s move (eg. 1 1): ");
     return Arrays.stream(playerMoveString.split(" "))
         .map(Integer::parseInt)
