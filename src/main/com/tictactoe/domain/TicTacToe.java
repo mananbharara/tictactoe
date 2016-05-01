@@ -16,7 +16,7 @@ public class TicTacToe {
 
   public void start() {
     Player player1 = new Player(this.inputOutput.query("Name for player 1 (X): "), X);
-    Player player2 = player2OrComputer(this.inputOutput.query("Name for player 2 (O): "));
+    Player player2 = player2OrComputer(this.inputOutput.query("Name for player 2 (O). Leave blank to play against the computer: "));
 
     GameState gameState = new GameState();
     Player currentPlayer = player1;
